@@ -21,7 +21,7 @@ int main(void) {
   if (N>999999999999)
     printf("Sorry the number's scope from 0 to 999999999");
   else if(N<=999999999999 && N>1000000)
-    k1=N/1000000;s //第一區>1000000
+    k1=N/1000000; //第一區>1000000
     k2=N%1000000; //第二區<1000000
   else 
     k1=0;
