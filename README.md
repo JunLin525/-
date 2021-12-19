@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include<stdbool.h>
+#include <string.h> 
 int main(void) {
   //N為總人數
   //M為總割菜數
@@ -17,27 +18,33 @@ int main(void) {
   //輸入總人數
   printf("please type how many people\n");
   scanf("%lld", &N);
-  //判斷值域範圍
   if (N>999999999999)
+  {
     printf("Sorry the number's scope from 0 to 999999999");
-  else if(N<=999999999999 && N>1000000)
-    k1=N/1000000; //第一區>1000000
-    k2=N%1000000; //第二區<1000000
-  else 
+  }
+  //判斷值域範圍
+  else if(N<1000000)
+  { 
     k1=0;
     k2=N%1000000;
-  bool leek[k1+1][k2+1]; //切成2個區塊 999999作為分界線
-  
+    bool leek[k1+1][k2+1]; //切成2個區塊 999999作為分界線
+  }
+  else //(N>=1000000 && N<999999999999) 
+  {
+    k1=N/1000000; //第一區>1000000
+    k2=N%1000000; //第二區<1000000
+    bool leek[k1+1][k2+1]; //切成2個區塊 999999作為分界線
+  }
   
 
   //韭菜原先都有持幣的狀況下 
   //分做兩區填充true值
   for(bool_i=0;bool_i<=k1;bool_i++){
     for(bool_j=0;bool_j<100000;bool_j++)
-    leek[bool_i][bool_j] = 'true'; 
+    leek[bool_i][bool_j] = true; 
     }
     for(bool_j=0;bool_j<k2+1;bool_j++)
-    leek[k1][bool_j]='true';
+    leek[k1][bool_j]=true;
 //輸入割韭菜次數
   printf("plese enter how many times to cut leek\n");
   scanf("%d\n", &M);
@@ -54,7 +61,7 @@ int main(void) {
     //進行每次割韭菜行為
     for(bool_i=k1_MA;bool_i<=k1_MB;bool_i++)
       for(bool_j=k2_MA;bool_j<=k2_MB;bool_j++)
-      leek[bool_i][bool_j]=leek[bool_i][bool_j]*(-1);
+      leek[bool_i][bool_j]=!leek[bool_i][bool_j];
   }
 
   for(bool_i=0;bool_i<=k1;bool_i++){
